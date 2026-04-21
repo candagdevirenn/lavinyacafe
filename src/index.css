@@ -1,0 +1,214 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Lavinya Cafe — Premium Night Lounge Design System
+   All colors HSL. Midnight Black + Warm Ivory + Amber Gold + Saffron.
+   Concept: Sıcak gece lounge'u, sarı duvarlar, amber ışık, koyu mermer.
+*/
+
+@layer base {
+  :root {
+    /* Brand */
+    --background: 38 30% 95%;          /* Warm Ivory #F7F1E6 */
+    --foreground: 30 15% 12%;          /* Espresso Black #221E18 */
+
+    /* Token names kept (emerald) for code stability — actual color is deep midnight */
+    --emerald: 30 18% 10%;             /* Espresso Midnight #1F1A14 */
+    --emerald-foreground: 38 30% 95%;
+    --emerald-deep: 28 22% 6%;         /* Almost-black warm */
+    --emerald-soft: 30 14% 18%;
+
+    --cream: 38 30% 95%;
+    --cream-warm: 36 32% 90%;
+
+    --gold: 38 78% 56%;                /* Saffron Amber #E8A93A */
+    --gold-foreground: 30 25% 10%;
+    --gold-soft: 42 85% 70%;
+    --gold-deep: 32 75% 44%;
+
+    --charcoal: 30 15% 12%;
+
+    /* Shadcn semantic mapping */
+    --card: 42 33% 96%;
+    --card-foreground: 0 0% 10%;
+
+    --popover: 42 33% 96%;
+    --popover-foreground: 0 0% 10%;
+
+    --primary: 156 60% 14%;
+    --primary-foreground: 42 33% 94%;
+
+    --secondary: 38 44% 60%;
+    --secondary-foreground: 0 0% 10%;
+
+    --muted: 40 25% 88%;
+    --muted-foreground: 156 15% 30%;
+
+    --accent: 38 44% 60%;
+    --accent-foreground: 0 0% 10%;
+
+    --destructive: 0 70% 45%;
+    --destructive-foreground: 42 33% 94%;
+
+    --border: 40 20% 82%;
+    --input: 40 20% 82%;
+    --ring: 38 44% 60%;
+
+    --radius: 0.25rem;
+
+    /* Gradients & effects */
+    --gradient-hero: linear-gradient(180deg, hsl(28 22% 6% / 0.35) 0%, hsl(28 22% 6% / 0.6) 55%, hsl(28 22% 6% / 0.92) 100%);
+    --gradient-emerald: linear-gradient(135deg, hsl(var(--emerald-deep)) 0%, hsl(var(--emerald)) 100%);
+    --gradient-gold: linear-gradient(135deg, hsl(var(--gold)) 0%, hsl(var(--gold-soft)) 100%);
+    --gradient-amber-glow: radial-gradient(ellipse at 50% 100%, hsl(38 78% 56% / 0.35), transparent 65%);
+    --gradient-fade-cream: linear-gradient(180deg, transparent 0%, hsl(var(--cream)) 100%);
+
+    --shadow-elegant: 0 20px 60px -20px hsl(28 22% 6% / 0.45);
+    --shadow-gold: 0 10px 40px -8px hsl(var(--gold) / 0.55);
+    --shadow-soft: 0 4px 20px -4px hsl(28 22% 6% / 0.18);
+    --shadow-amber: 0 0 60px -10px hsl(var(--gold) / 0.35);
+
+    --transition-elegant: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-feature-settings: "ss01", "ss02";
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  h1, h2, h3, h4, h5 {
+    @apply font-serif tracking-tight;
+    font-weight: 400;
+  }
+}
+
+@layer components {
+  .container-luxe {
+    @apply max-w-7xl mx-auto px-6 sm:px-8 md:px-10 lg:px-16;
+  }
+
+  .eyebrow {
+    @apply inline-block uppercase tracking-[0.3em] text-xs font-medium text-gold;
+  }
+
+  .gold-divider {
+    @apply inline-block w-12 h-px bg-gold align-middle mx-3;
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(60px) scale(0.98);
+    filter: blur(6px);
+    transition:
+      opacity 1.2s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 1.2s cubic-bezier(0.22, 1, 0.36, 1),
+      filter 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+
+  .reveal-left {
+    opacity: 0;
+    transform: translateX(-60px);
+    filter: blur(6px);
+    transition: all 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .reveal-left.is-visible {
+    opacity: 1;
+    transform: translateX(0);
+    filter: blur(0);
+  }
+
+  .reveal-right {
+    opacity: 0;
+    transform: translateX(60px);
+    filter: blur(6px);
+    transition: all 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .reveal-right.is-visible {
+    opacity: 1;
+    transform: translateX(0);
+    filter: blur(0);
+  }
+
+  .text-mask {
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: bottom;
+  }
+  .text-mask > span {
+    display: inline-block;
+    transform: translateY(110%);
+    transition: transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .text-mask.is-visible > span,
+  .is-visible .text-mask > span {
+    transform: translateY(0);
+  }
+
+  .link-underline {
+    @apply relative;
+  }
+  .link-underline::after {
+    content: '';
+    @apply absolute left-0 -bottom-1 h-px w-full bg-current scale-x-0 origin-right transition-transform duration-500;
+  }
+  .link-underline:hover::after {
+    @apply scale-x-100 origin-left;
+  }
+  @media (max-width: 640px) {
+    .container-luxe {
+      @apply px-5;
+    }
+
+    .gold-divider {
+      @apply w-7 mx-2;
+    }
+
+    .reveal,
+    .reveal-left,
+    .reveal-right {
+      transform: translateY(28px);
+      filter: blur(3px);
+    }
+  }
+}
+
+@layer utilities {
+  @keyframes splash-line {
+    from { transform: scaleX(0); opacity: 0; }
+    to { transform: scaleX(1); opacity: 1; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      scroll-behavior: auto !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
